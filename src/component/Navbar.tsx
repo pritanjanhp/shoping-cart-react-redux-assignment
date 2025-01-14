@@ -6,7 +6,6 @@ const Navbar = () => {
       {/* <h1>Navbar</h1> */}
       <ul className="flex justify-around text-xl text-white ">
         <li>
-          {/* <a href="/">Home</a> */}
           <Link to="/">Home</Link>
         </li>
         <li>
