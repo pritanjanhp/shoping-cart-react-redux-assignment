@@ -15,11 +15,9 @@ const Login = () => {
     dispatch(login({ name, email, pwd }));
     console.log("first");
   };
-
-  console.log("second");
-
+  // console.log("second");
   return (
-    <div className="flex flex-col border border-red-950 justify-center  items-center min-h-screen bg-gray-100 p-4">
+    <div className="flex flex-col justify-center  items-center min-h-screen bg-gray-100 p-4">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-semibold text-center text-gray-700 mb-6">
           Login

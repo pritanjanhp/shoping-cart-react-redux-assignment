@@ -1,19 +1,39 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { RootState } from "../app/store";
+import { FaCartArrowDown } from "react-icons/fa";
 
 const Navbar = () => {
+  const cartLength = useSelector(
+    (state: RootState) =>
+      state.products.cart.filter(
+        (item: { quantity: number }) => item.quantity > 0
+      ).length
+  );
   return (
-    <nav className="bg-blue-500 p-5 shadow-2xl shadow-blue-300">
+    <nav className="bg-blue-500 h-20 p-5 shadow-xl fixed top-0 left-0 right-0 shadow-blue-400">
       {/* <h1>Navbar</h1> */}
-      <ul className="flex justify-around text-xl text-white ">
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/cart">cart</Link>
-        </li>
-        <li>
+      <ul className="flex justify-between px-5 items-center text-xl  text-white ">
+        <div className="flex items-center gap-8">
+          <Link className="p-2 hover:bg-blue-400 rounded" to="/">
+            Home
+          </Link>
+
+          <Link className="p-2 hover:bg-blue-400 rounded" to="/product">
+            Product
+          </Link>
+        </div>
+
+        <Link
+          to="/cart"
+          className="p-2 flex items-center hover:bg-blue-400 rounded "
+        >
+          {cartLength} {<FaCartArrowDown className="mr-2 ml-3" />}
+        </Link>
+
+        {/* <li>
           <Link to="/logout">Logout</Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

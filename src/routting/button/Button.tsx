@@ -12,7 +12,7 @@ const Button = () => {
   const isLoggedIn = user.name !== "" && user.email !== " " && user.pwd !== " ";
 
   return (
-    <div className="">
+    <div className="mt-20">
       {/* {isLoggedIn && <Navbar />} */}
       {/* <h2 className="text-center text-2xl font-bold mt-5 mb-2">Cart App</h2> */}
       <BrowserRouter>
@@ -20,12 +20,18 @@ const Button = () => {
         <Routes>
           <Route
             path="/"
-            element={<div className="text-center">Home Page</div>}
+            element={
+              <div className="text-center">
+                <h2>Home Page</h2>
+                {/* <Login /> */}
+              </div>
+            }
           />
           <Route
             path="/login"
             element={<div>{isLoggedIn ? <Product /> : <Login />}</div>}
           />
+          <Route path="/product" element={<Product />}></Route>
           <Route path="/cart" element={<CartPage />} />
           <Route path="/logout" element={<Logout />} />
         </Routes>

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../app/store";
 import { removeProductFromCart, updateQuantity } from "../feature/CartSlice";
-// import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const CartPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -23,12 +23,21 @@ const CartPage: React.FC = () => {
       return Math.round((total + product.price * product.quantity) * 100) / 100;
     }, 0);
   };
-
+  // console.log(cart.length);
   return (
-    <section className="p-6 bg-white shadow-lg rounded-md w-full max-w-md">
-      <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
+    <section className="p-6 bg-white shadow-lg rounded-md w-full h-full">
+      <h2 className="flex justify-center text-2xl font-bold mb-5 p-3 ">
+        Your Cart
+      </h2>
       {cart.length === 0 ? (
-        <p>Your cart is empty!</p>
+        <div className="flex flex-col text-center justify-center">
+          <p className="">Your cart is empty!</p>
+          <Link to="/product">
+            <button className="btn bg-blue-500 text-white p-2 rounded m-2">
+              shop now
+            </button>
+          </Link>
+        </div>
       ) : (
         cart.map((product) => (
           <div
@@ -86,11 +95,18 @@ const CartPage: React.FC = () => {
           </div>
         ))
       )}
-
+      {/* fixed top-0 left-0 right-0 */}
       {cart.length > 0 && (
-        <div className="flex text-xl justify-between mt-5 font-bold">
-          <span>Total Price :</span>
-          <span> ₹ {handlePrice()} </span>
+        // <div className="flex text-xl justify-between mt-5 font-bold  ">
+        <div className="flex text-xl justify-between mt-15 font-bold fixed bottom-0 left-0 right-0 bg-blue-400 ">
+          <div className="flex justify-between">
+            <span>Total Item :</span>
+            <span>{cart.length}</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Total Price :</span>
+            <span> ₹ {handlePrice()} </span>
+          </div>
         </div>
       )}
     </section>

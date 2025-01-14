@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../app/store";
 import { useEffect } from "react";
 import { addProductToCart, fetchPdt } from "../feature/CartSlice";
-// import { NavLink } from "react-router-dom";
 
 const Product: React.FC = ({}) => {
   // const [isOpen, setIsOpen] = useState(false);
@@ -32,10 +31,10 @@ const Product: React.FC = ({}) => {
   }
 
   return (
-    <section className="flex flex-wrap mx-auto w-full h-auto space-x-6 justify-center p-10 space-y-6 ">
+    <div className="flex flex-wrap mx-auto w-full h-auto space-x-10 justify-center p-10 space-y-7 ">
       {items.map((item) => (
         <article
-          className="flex flex-col items-center justify-center p-4 w-72 shadow-2xl bg-red-50"
+          className="flex flex-col items-center justify-center p-4 w-72 shadow-lg shadow-black bg-red-50 hover:bg-white"
           key={item.id}
         >
           <img
@@ -81,7 +80,7 @@ const Product: React.FC = ({}) => {
           {/* {isOpen && <CartPage/>} */}
         </article>
       ))}
-    </section>
+    </div>
   );
 };
 
