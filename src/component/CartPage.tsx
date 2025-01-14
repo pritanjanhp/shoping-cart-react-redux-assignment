@@ -1,14 +1,14 @@
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../app/store";
 import { removeProductFromCart, updateQuantity } from "../feature/CartSlice";
-import { useEffect } from "react";
+// import { useEffect, useState } from "react";
 
 const CartPage: React.FC = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state: RootState) =>
     state.products.cart.filter((item) => item.quantity > 0)
   );
-  console.log("item is added "+cart)
+  // console.log("item is added " + cart);
 
   // const cart = useSelector((state: RootState) => state.products.items);
   // console.log(cart);
@@ -17,6 +17,13 @@ const CartPage: React.FC = () => {
   //   dispatch
   // }
   //   },[])
+
+  let handlePrice = () => {
+    return cart.reduce((total, product) => {
+      return Math.round((total + product.price * product.quantity) * 100) / 100;
+    }, 0);
+  };
+
   return (
     <section className="p-6 bg-white shadow-lg rounded-md w-full max-w-md">
       <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
@@ -50,7 +57,7 @@ const CartPage: React.FC = () => {
                     })
                   )
                 }
-                disabled={product.quantity <= 1}
+                // disabled={product.quantity <= 1}
               >
                 -
               </button>
@@ -69,7 +76,8 @@ const CartPage: React.FC = () => {
                 +
               </button>
               <button
-                className="ml-4 p-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                // className="ml-4 p-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                className="p-2 w-35 bg-blue-500 text-white rounded-lg"
                 onClick={() => dispatch(removeProductFromCart(product.id))}
               >
                 Remove
@@ -77,6 +85,13 @@ const CartPage: React.FC = () => {
             </div>
           </div>
         ))
+      )}
+
+      {cart.length > 0 && (
+        <div className="flex text-xl justify-between mt-5 font-bold">
+          <span>Total Price :</span>
+          <span> ₹ {handlePrice()} </span>
+        </div>
       )}
     </section>
   );

@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { logout } from "../../feature/UserSlice";
-import AddCart from "../AddCart";
+import CartPage from "../../component/CartPage";
 
 const Logout = () => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const Logout = () => {
       >
         Logout
       </button>
-      <AddCart />
+      <CartPage />
     </div>
   );
 };
