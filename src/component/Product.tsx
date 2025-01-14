@@ -1,20 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../app/store";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { addProductToCart, fetchPdt } from "../feature/CartSlice";
-import AddCart from "./AddCart";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const Product: React.FC = () => {
-  const [cart, setCart] = useState(false);
-  const handleCLick = () => {
-    setCart(!cart);
-  };
-  console.log(cart);
+const Product: React.FC = ({}) => {
+  // const [isOpen, setIsOpen] = useState(false);
+  // const handleOpen = () => setIsOpen(!isOpen);
+
+  // const [cart, setCart] = useState(false);
+  // const handleCLick = () => {
+  //   setCart(!cart);
+  // };
+  // console.log(cart);
   const dispatch = useDispatch<AppDispatch>();
-  const { items, status, error } = useSelector(
-    (state: RootState) => state.products
-  );
+  const { items, status } = useSelector((state: RootState) => state.products);
 
   useEffect(() => {
     if (status === "idle") {
@@ -29,10 +29,6 @@ const Product: React.FC = () => {
         Loading...
       </h1>
     );
-  }
-
-  if (status === "failed") {
-    return <h1>Error: data not fetched {error}</h1>;
   }
 
   return (
@@ -55,21 +51,36 @@ const Product: React.FC = () => {
               <p className="p-1 m-1"> Rating: {item.rating}</p>
               <p className="p-1 m-1"> Stock: {item.stock}</p>
               <p className="p-1 m-1"> Brand: {item.brand}</p>
+
               <button
-                className="p-2 m-1 w-35 justify-center bg-blue-500 text-white rounded-md"
-                onClick={() => dispatch(addProductToCart(item))}
+                className="p-2 m-1 w-35 justify-center bg-blue-500 text-white rounded-lg"
+                onClick={() => {
+                  dispatch(addProductToCart(item));
+                  // console.log("adding to cart", item);
+                }}
               >
                 Add to Cart
-                {/* <Link to="/addcart">
-                  <AddCart />{" "}
-                </Link> */}
               </button>
+
+              <NavLink
+                to="/cart"
+                className="p-2 m-1 w-35 bg-blue-500 text-white rounded-lg"
+              >
+                View Cart
+              </NavLink>
+
+              {/* <button
+                className="p-2 m-1 w-35 justify-center bg-blue-500 text-white rounded-md"
+                onClick={handleOpen}
+              >
+                {isOpen ? "close Cart" : "view Cart"}
+              </button> */}
+              {/* {cart && <AddCart />} */}
             </div>
-            <br />
           </div>
+          {/* {isOpen && <AddCart />} */}
         </article>
       ))}
-      {/* {cart && <AddCart handleCLick={handleCLick} />} */}
     </section>
   );
 };

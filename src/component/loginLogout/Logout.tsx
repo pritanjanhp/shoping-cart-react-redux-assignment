@@ -17,7 +17,6 @@ const Logout = () => {
       >
         Logout
       </button>
-
       <AddCart />
     </div>
   );

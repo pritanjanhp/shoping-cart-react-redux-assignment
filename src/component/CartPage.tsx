@@ -1,13 +1,22 @@
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../app/store";
 import { removeProductFromCart, updateQuantity } from "../feature/CartSlice";
+import { useEffect } from "react";
 
 const CartPage: React.FC = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state: RootState) =>
     state.products.cart.filter((item) => item.quantity > 0)
   );
+  console.log("item is added "+cart)
 
+  // const cart = useSelector((state: RootState) => state.products.items);
+  // console.log(cart);
+  // useEffect(() => {
+  // const fetchData = async () => {
+  //   dispatch
+  // }
+  //   },[])
   return (
     <section className="p-6 bg-white shadow-lg rounded-md w-full max-w-md">
       <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
@@ -32,7 +41,7 @@ const CartPage: React.FC = () => {
             </div>
             <div className="flex items-center space-x-2">
               <button
-                className="p-2 bg-gray-200 rounded-md"
+                className="p-2 bg-gray-200 rounded-lg"
                 onClick={() =>
                   dispatch(
                     updateQuantity({
