@@ -95,16 +95,15 @@ const CartPage: React.FC = () => {
           </div>
         ))
       )}
-      {/* fixed top-0 left-0 right-0 */}
       {cart.length > 0 && (
         // <div className="flex text-xl justify-between mt-5 font-bold  ">
-        <div className="flex text-xl justify-between mt-15 font-bold fixed bottom-0 left-0 right-0 bg-blue-400 ">
-          <div className="flex justify-between">
-            <span>Total Item :</span>
+        <div className="flex text-xl justify-between mt-15 font-bold fixed bottom-0 left-0 right-0 bg-blue-400 p-4">
+          <div>
+            <span>Total Item : </span>
             <span>{cart.length}</span>
           </div>
-          <div className="flex justify-between">
-            <span>Total Price :</span>
+          <div>
+            <span>Total Price : </span>
             <span> ₹ {handlePrice()} </span>
           </div>
         </div>
@@ -114,3 +113,6 @@ const CartPage: React.FC = () => {
 };
 
 export default CartPage;
+
+// give discount
+// change UI

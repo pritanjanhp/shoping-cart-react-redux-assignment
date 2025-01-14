@@ -1,11 +1,11 @@
 import { Link, Route, Routes, BrowserRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../feature/UserSlice";
-import Login from "../../app/loginLogout/Login";
+import Login from "../../loginLogout/Login";
 import CartPage from "../../component/CartPage";
 import Product from "../../component/Product";
 import Navbar from "../../component/Navbar";
-import Logout from "../../app/loginLogout/Logout";
+import Logout from "../../loginLogout/Logout";
 
 const Button = () => {
   const user = useSelector(selectUser);

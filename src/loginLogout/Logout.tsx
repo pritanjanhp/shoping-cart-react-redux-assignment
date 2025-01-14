@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { logout } from "../../feature/UserSlice";
-import CartPage from "../../component/CartPage";
+import { logout } from "../feature/UserSlice";
+import CartPage from "../component/CartPage";
 
 const Logout = () => {
   const dispatch = useDispatch();

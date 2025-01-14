@@ -47,9 +47,9 @@ const Product: React.FC = ({}) => {
             {/* <div className="m-1 p-1 flex-row justify-evenly md-full w-full"> */}
             <p className="italic">{item.title}</p>
             <p> Price: ₹ {item.price}</p>
-            <p> Rating: {item.rating}</p>
-            <p> Stock: {item.stock}</p>
-            <p> Brand: {item.brand}</p>
+            {/* <p> Rating: {item.rating}</p> */}
+            {/* <p> Stock: {item.stock}</p> */}
+            {/* <p> Brand: {item.brand}</p> */}
 
             <button
               className="p-2 w-35 bg-blue-500 text-white rounded-lg hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-30"
