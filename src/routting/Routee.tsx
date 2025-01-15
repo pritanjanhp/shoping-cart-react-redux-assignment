@@ -36,12 +36,10 @@ const Routee = () => {
             path="/login"
             element={isLoggedIn ? <Navigate to="/product" /> : <Login />}
           ></Route>
-
           <Route
             path="/product"
             element={isLoggedIn ? <Product /> : <Navigate to="login" />}
           ></Route>
-
           <Route
             path="/cart"
             element={isLoggedIn ? <CartPage /> : <Navigate to="/login" />}

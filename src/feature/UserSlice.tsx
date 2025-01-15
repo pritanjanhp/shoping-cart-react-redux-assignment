@@ -20,7 +20,7 @@ const userSlice = createSlice({
       const { email, pwd } = action.payload;
       const isValid = validateCredentials(email, pwd);
       if (isValid) {
-        console.log("valid user");
+        // console.log("valid user");
         state.email = email;
         state.pwd = pwd;
         state.name = email.split("@")[0];
@@ -41,5 +41,4 @@ const userSlice = createSlice({
 
 export const { login, logout } = userSlice.actions;
 export const selectUser = (state: { user: User }) => state.user;
-
 export default userSlice.reducer;

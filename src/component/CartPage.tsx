@@ -2,12 +2,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../app/store";
 import { removeProductFromCart, updateQuantity } from "../feature/CartSlice";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const CartPage: React.FC = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state: RootState) =>
     state.products.cart.filter((item) => item.quantity > 0)
   );
+  const [cnt, setCnt] = useState(cart.length);
   // console.log("added " + cart);
 
   // const cart = useSelector((state: RootState) => state.products.items);
@@ -65,36 +67,41 @@ const CartPage: React.FC = () => {
             <div className="flex items-center space-x-2">
               <button
                 className="p-2 bg-gray-200 rounded-lg"
-                onClick={() =>
+                onClick={() => {
                   dispatch(
                     updateQuantity({
                       id: product.id,
                       quantity: product.quantity - 1
                     })
-                  )
-                }
-                // disabled={product.quantity <= 1}
+                  );
+                  setCnt(cnt - 1);
+                }}
               >
                 -
               </button>
               <span className="px-4">{product.quantity}</span>
               <button
                 className="p-2 bg-gray-200 rounded-md"
-                onClick={() =>
+                onClick={() => {
                   dispatch(
                     updateQuantity({
                       id: product.id,
                       quantity: product.quantity + 1
                     })
-                  )
-                }
+                  );
+                  setCnt(cnt + 1);
+                }}
+                disabled={product.stock <= product.quantity}
               >
                 +
               </button>
               <button
                 // className="ml-4 p-2 bg-red-500 text-white rounded-md hover:bg-red-600"
                 className="p-2 w-35 bg-blue-500 text-white rounded-lg"
-                onClick={() => dispatch(removeProductFromCart(product.id))}
+                onClick={() => {
+                  dispatch(removeProductFromCart(product.id));
+                  setCnt(cnt - product.quantity);
+                }}
               >
                 Remove
               </button>
@@ -105,6 +112,10 @@ const CartPage: React.FC = () => {
       {cart.length > 0 && (
         // <div className="flex text-xl justify-between mt-5 font-bold  ">
         <div className="flex justify-between mt-16 font-bold fixed bottom-0 left-0 right-0 bg-blue-400 p-4">
+          <div className="text-l">
+            <span>Total items </span>
+            <span>{cnt}</span>
+          </div>
           <div className="ml-auto">
             <div className="flex flex-col items-end">
               {/* <div>
@@ -116,7 +127,7 @@ const CartPage: React.FC = () => {
                 <span className="line-through"> {handlePrice()} </span>
               </div>
               <div className="text-xl">
-                <span>Discounted Price</span>
+                <span>Discounted Price : </span>
                 <span> ₹ {discount()} </span>
               </div>
             </div>
