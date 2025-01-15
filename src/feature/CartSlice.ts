@@ -24,8 +24,10 @@ type itemType = {
 interface ProductsState {
   items: itemType[];
   cart: itemType[];
+  fav: itemType[];
   status: "idle" | "loading" | "success" | "failed";
   productQuantity: number;
+  addedProducts: Set<string>;
 }
 
 const cartSlice = createSlice({
@@ -33,8 +35,10 @@ const cartSlice = createSlice({
   initialState: {
     items: [],
     cart: [],
+    fav: [],
     status: "idle",
-    productQuantity: 0
+    productQuantity: 0,
+    addedProducts: new Set()
   } as ProductsState,
   reducers: {
     addProductToCart: (state, action: PayloadAction<itemType>) => {
@@ -45,10 +49,23 @@ const cartSlice = createSlice({
         productInCart.quantity += 1;
         state.productQuantity += 1;
       } else {
+        // state.addedProducts.add(action.payload);
         state.cart.push({ ...action.payload, quantity: 1 });
         state.productQuantity += 1;
       }
     },
+    addProductToFavourite: (state, action: PayloadAction<itemType>) => {
+      // state.fav.push({...action.payload.id, quantity:1});
+      const productInFav = state.fav.find(
+        (item) => item.id === action.payload.id
+      );
+      if (productInFav) {
+        productInFav.quantity += 1;
+      } else {
+        state.fav.push({ ...action.payload, quantity: 1 });
+      }
+    },
+
     // addProductToCart: (state, action: PayloadAction<itemType>) => {
     //   // const pdt = action.payload;
     //   console.log(action.payload);
@@ -110,6 +127,10 @@ const cartSlice = createSlice({
   }
 });
 
-export const { addProductToCart, removeProductFromCart, updateQuantity } =
-  cartSlice.actions;
+export const {
+  addProductToCart,
+  removeProductFromCart,
+  updateQuantity,
+  addProductToFavourite
+} = cartSlice.actions;
 export default cartSlice.reducer;

@@ -61,18 +61,18 @@ const Product: React.FC = ({}) => {
               alt={item.title}
               className="w-full h-64 object-cover rounded-t-2xl transform transition-all duration-300 ease-in-out hover:scale-105"
             />
-            {/* <div className="absolute top-2 left-2 bg-white p-2 rounded-full shadow-lg opacity-80">
-              <button
+            <div className="absolute top-2 left-2 bg-white p-2 rounded-full shadow-lg opacity-80">
+              {/* <button
                 className="text-xl text-blue-600"
                 onClick={() => {
-                  dispatch(addProductToCart(item));
+                  dispatch(addProductToFavourite(item));
                 }}
               >
                 {" "}
-                <FaHeart className="bg-red-400 transparent" />
+                <FaHeart className="" />
                 <i className="fas fa-cart-plus"></i>
-              </button>
-            </div> */}
+              </button> */}
+            </div>
           </div>
 
           <div className="p-6">
@@ -92,7 +92,7 @@ const Product: React.FC = ({}) => {
                 disabled={click[item.id]}
                 className="mt-4 w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
               >
-                {click[item.id] ? "Added" : "Add to Cart"}
+                {click[item.id] ? "In Your cart" : "Add to Cart"}
               </button>
             ) : (
               <Link to="/login">

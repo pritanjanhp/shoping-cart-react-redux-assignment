@@ -11,6 +11,7 @@ import CartPage from "../component/CartPage";
 import Product from "../component/Product";
 import Navbar from "../component/Navbar";
 import Logout from "../loginLogout/Logout";
+import Favourite from "../component/Favourite";
 
 const Routee = () => {
   const user = useSelector(selectUser);
@@ -31,7 +32,7 @@ const Routee = () => {
               </div>
             }
           />
-        
+
           <Route
             path="/login"
             element={isLoggedIn ? <Navigate to="/product" /> : <Login />}
@@ -46,6 +47,11 @@ const Routee = () => {
             path="/cart"
             element={isLoggedIn ? <CartPage /> : <Navigate to="/login" />}
           />
+          <Route
+            path="/favourite"
+            element={isLoggedIn ? <Favourite /> : <Navigate to="/login" />}
+          />
+
           <Route path="/logout" element={<Logout />} />
 
           {/* <Route
