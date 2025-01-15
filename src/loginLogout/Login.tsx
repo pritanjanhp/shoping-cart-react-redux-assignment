@@ -12,7 +12,7 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(login({ name, email, pwd }));
-    console.log("first");
+    // console.log("first");
   };
   // console.log("second");
   return (

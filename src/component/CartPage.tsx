@@ -40,7 +40,7 @@ const CartPage: React.FC = () => {
       </h2>
       {cart.length === 0 ? (
         <div className="flex flex-col text-center justify-center">
-          <p className="">Your cart is empty!</p>
+          <p className="text-xl mb-4">Your cart is empty!</p>
           <Link to="/product">
             <button className="btn bg-blue-500 text-white p-2 rounded m-2">
               shop now
@@ -64,7 +64,7 @@ const CartPage: React.FC = () => {
                 <p className="text-gray-600">₹{product.price}</p>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 ">
               <button
                 className="p-2 bg-gray-200 rounded-lg"
                 onClick={() => {
@@ -112,16 +112,16 @@ const CartPage: React.FC = () => {
       {cart.length > 0 && (
         // <div className="flex text-xl justify-between mt-5 font-bold  ">
         <div className="flex justify-between mt-16 font-bold fixed bottom-0 left-0 right-0 bg-blue-400 p-4">
-          <div className="text-l">
+          <div className="text-xl mt-5">
             <span>Total items </span>
             <span>{cnt}</span>
           </div>
           <div className="ml-auto">
             <div className="flex flex-col items-end">
               {/* <div>
-            <span>Total Item : </span>
-            <span>{cart.length}</span>
-          </div> */}
+                <span>Total Item : </span>
+                <span>{cart.length}</span>
+              </div> */}
               <div>
                 <span>Orignal Price : ₹ </span>
                 <span className="line-through"> {handlePrice()} </span>

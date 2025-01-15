@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../app/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { addProductToCart, fetchPdt } from "../feature/CartSlice";
 import { selectUser } from "../feature/UserSlice";
 import { Link } from "react-router-dom";
+import Loader from "./Loader";
 
 const Product: React.FC = ({}) => {
   // const [isOpen, setIsOpen] = useState(false);
@@ -17,8 +18,9 @@ const Product: React.FC = ({}) => {
 
   const user = useSelector(selectUser);
   const isLoggedIn = user.name !== "" && user.email !== " " && user.pwd !== " ";
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
 
+  const [click, setClick] = useState<{ [key: string]: boolean }>({});
   const dispatch = useDispatch<AppDispatch>();
   const { items, status } = useSelector((state: RootState) => state.products);
 
@@ -32,10 +34,19 @@ const Product: React.FC = ({}) => {
   if (status === "loading") {
     return (
       <h1 className="flex justify-center items-center h-screen text-xl">
-        Loading...
+        {/* Loading... */}
+        <Loader />
       </h1>
     );
   }
+
+  const handleAddToCart = (item: any) => {
+    setClick((prev) => ({
+      ...prev,
+      [item.id]: true
+    }));
+    dispatch(addProductToCart(item));
+  };
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-8">
@@ -74,17 +85,19 @@ const Product: React.FC = ({}) => {
 
             {isLoggedIn ? (
               <button
-                onClick={() => {
-                  dispatch(addProductToCart(item));
-                }}
+                // onClick={() => {
+                //   dispatch(addProductToCart(item));
+                // }}
+                onClick={() => handleAddToCart(item)}
+                disabled={click[item.id]}
                 className="mt-4 w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
               >
-                Add to Cart
+                {click[item.id] ? "Added" : "Add to Cart"}
               </button>
             ) : (
               <Link to="/login">
                 <button className="mt-4 w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200">
-                  Login to Add to Cart
+                  Add to Cart
                 </button>
               </Link>
             )}
