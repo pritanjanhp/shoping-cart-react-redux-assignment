@@ -11,24 +11,29 @@ const Navbar = () => {
       ).length
   );
   return (
-    <nav className="bg-blue-500 h-20 p-5 shadow-xl fixed top-0 left-0 right-0 shadow-blue-400">
+    <nav className="z-10 bg-blue-500 justify-between h-20 p-5 shadow-xl fixed top-0 left-0 right-0 shadow-blue-400">
       {/* <h1>Navbar</h1> */}
       <ul className="flex justify-between px-5 items-center text-xl  text-white ">
         <div className="flex items-center gap-8">
-          <Link className="p-2 hover:bg-blue-400 rounded" to="/">
+          {/* <Link className="p-2 hover:bg-blue-400 rounded" to="/">
             Home
-          </Link>
+          </Link> */}
 
           <Link className="p-2 hover:bg-blue-400 rounded" to="/product">
-            Product
+            Home
+            {/* Product */}
           </Link>
         </div>
 
-        <Link
-          to="/cart"
-          className="p-2 flex items-center hover:bg-blue-400 rounded "
-        >
-          {cartLength} {<FaCartArrowDown className="mr-2 ml-3" />}
+        <Link to="/cart" className="p-2 relative flex items-center  rounded ">
+          {cartLength === 0 ? (
+            ""
+          ) : (
+            <h1 className="absolute bg-red-700 w-6 h-6 flex justify-center items-center rounded-full text-sm top-[-16px]">
+              {cartLength}
+            </h1>
+          )}{" "}
+          {<FaCartArrowDown className="mr-2 ml-3" />}
         </Link>
 
         {/* <li>

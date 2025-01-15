@@ -19,7 +19,6 @@ const userSlice = createSlice({
     login: (state, action: PayloadAction<User>) => {
       const { email, pwd } = action.payload;
       const isValid = validateCredentials(email, pwd);
-
       if (isValid) {
         console.log("valid user");
         state.email = email;

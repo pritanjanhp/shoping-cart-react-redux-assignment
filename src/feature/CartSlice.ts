@@ -18,7 +18,6 @@ type itemType = {
   rating: number;
   stock: number;
   brand: string;
-  thumbnail: string;
   images: string[];
 };
 

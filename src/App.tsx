@@ -1,9 +1,9 @@
-import Button from "./routting/button/Button";
+import Routee from "./routting/Routee";
 
 const App = () => {
   return (
     <div className="">
-      <Button />
+      <Routee />
     </div>
   );
 };

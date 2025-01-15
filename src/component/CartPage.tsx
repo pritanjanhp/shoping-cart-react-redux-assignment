@@ -8,7 +8,7 @@ const CartPage: React.FC = () => {
   const cart = useSelector((state: RootState) =>
     state.products.cart.filter((item) => item.quantity > 0)
   );
-  // console.log("item is added " + cart);
+  // console.log("added " + cart);
 
   // const cart = useSelector((state: RootState) => state.products.items);
   // console.log(cart);
@@ -23,6 +23,13 @@ const CartPage: React.FC = () => {
       return Math.round((total + product.price * product.quantity) * 100) / 100;
     }, 0);
   };
+
+  let discount = () => {
+    if (handlePrice() > 100) return Math.round(handlePrice() * 0.2 * 100) / 100;
+    else if (handlePrice() > 200) return Math.round(handlePrice() * 0.3);
+    else return Math.round(handlePrice() * 0.4);
+  };
+
   // console.log(cart.length);
   return (
     <section className="p-6 bg-white shadow-lg rounded-md w-full h-full">
@@ -97,14 +104,22 @@ const CartPage: React.FC = () => {
       )}
       {cart.length > 0 && (
         // <div className="flex text-xl justify-between mt-5 font-bold  ">
-        <div className="flex text-xl justify-between mt-15 font-bold fixed bottom-0 left-0 right-0 bg-blue-400 p-4">
-          <div>
+        <div className="flex justify-between mt-16 font-bold fixed bottom-0 left-0 right-0 bg-blue-400 p-4">
+          <div className="ml-auto">
+            <div className="flex flex-col items-end">
+              {/* <div>
             <span>Total Item : </span>
             <span>{cart.length}</span>
-          </div>
-          <div>
-            <span>Total Price : </span>
-            <span> ₹ {handlePrice()} </span>
+          </div> */}
+              <div>
+                <span>Orignal Price : ₹ </span>
+                <span className="line-through"> {handlePrice()} </span>
+              </div>
+              <div className="text-xl">
+                <span>Discounted Price</span>
+                <span> ₹ {discount()} </span>
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -113,6 +128,3 @@ const CartPage: React.FC = () => {
 };
 
 export default CartPage;
-
-// give discount
-// change UI
