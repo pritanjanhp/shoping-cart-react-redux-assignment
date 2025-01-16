@@ -1,13 +1,12 @@
-# For Login
+## For Login use the below
 
-- use the below
+- email: "asdf@gmail.com",
+- password: "1234"
 
-  - email: "asdf@gmail.com",
-  - password: "1234"
+or
 
-  - or
-  - email: "asd@gmail.com",
-  - password: "123"
+- email: "asd@gmail.com",
+- password: "123"
 
 # React + TypeScript + Vite
 
