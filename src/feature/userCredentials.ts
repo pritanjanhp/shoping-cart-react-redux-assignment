@@ -8,7 +8,7 @@ export const validUsers: UserCredentials[] = [
   {
     name: "asdf",
     email: "asdf@gmail.com",
-    password: "123"
+    password: "1234"
   },
   {
     name: "asd",
