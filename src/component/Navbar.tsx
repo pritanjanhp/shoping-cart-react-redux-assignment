@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RootState } from "../app/store";
-import { FaCartArrowDown, FaHeart } from "react-icons/fa";
+import { FaCartArrowDown } from "react-icons/fa";
 
 const Navbar = () => {
   const cartLength = useSelector(
@@ -26,9 +26,9 @@ const Navbar = () => {
         </div>
 
         <div className="">
-          <Link to="/favourite" className="">
+          {/* <Link to="/favourite" className="">
             <FaHeart className="" />
-          </Link>
+          </Link> */}
 
           <Link to="/cart" className="p-2 relative flex items-center  rounded ">
             {cartLength === 0 ? (
